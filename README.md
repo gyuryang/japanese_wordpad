@@ -1,1 +1,1 @@
-# japanese_wordpad
+일본 한자 2136자 단어장
