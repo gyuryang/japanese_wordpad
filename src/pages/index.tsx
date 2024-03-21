@@ -1,40 +1,29 @@
-import { useState, useEffect } from 'react';
-import * as XLSX from 'xlsx';
+import { useState, useEffect } from "react";
+import Main from "../components/Main/Main";
+import Test from "../components/Test/Test";
 
 export default function Wordpad() {
-    const [jsonData, setJsonData] = useState<string[][]>([]);
-    const [minSize, setMinSize] = useState(0);
-    const [maxSize, setMaxSize] = useState(0);
-    
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await fetch('/langList.xlsx'); // Excel 파일 경로
-            const blob = await response.blob();
-            const reader = new FileReader();
-            reader.onload = (event) => {
-              if (event.target) {
-                const binaryString = event.target.result as string;
-                const workbook = XLSX.read(binaryString, { type: 'binary' });
-                const firstSheetName = workbook.SheetNames[0];
-                const worksheet = workbook.Sheets[firstSheetName];
+  const [minSize, setMinSize] = useState<string>("");
+  const [maxSize, setMaxSize] = useState<string>("");
+  const [isClick, setIsClick] = useState<boolean>(false);
 
-                const data = XLSX.utils.sheet_to_json<string[]>(worksheet, { header: 1 });
-                setJsonData(data);
-              }
-            };
-            reader.readAsBinaryString(blob);
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
-        };
-    
-        fetchData();
-      }, []);
+  const clickAction = (min?: string, max?: string) => {
+    if (!isClick) {
+      if (!min || !max) return alert("값을 입력해주세요");
+      //Main 화면일경우
+      setMinSize(min ?? "");
+      setMaxSize(max ?? "");
+    }
+    setIsClick(!isClick);
+  };
 
-    return(
-        <>
-            
-        </>
-    )
+  return (
+    <>
+      {isClick ? (
+        <Test {...{ minSize, maxSize, clickAction }} />
+      ) : (
+        <Main {...{ clickAction }} />
+      )}
+    </>
+  );
 }
