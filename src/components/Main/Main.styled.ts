@@ -11,7 +11,8 @@ export const Wrap = styled.div`
 export const Flex = styled.div`
   display: flex;
   flex-direction: row;
-  height: 50px;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 30px;
 `;
 

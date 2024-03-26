@@ -20,7 +20,6 @@ export default function Main({
           value={minSize}
           onChange={(e) => setMinSize(e.target.value)}
         />
-        <p>-</p>
         <S.Input
           type="number"
           max={2136}

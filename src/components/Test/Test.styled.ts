@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrap = styled.div`
-  width: 450px;
+  width: 320px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -15,6 +15,7 @@ export const Flex = styled.div`
   justify-content: space-between;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 30px;
 `;
 
