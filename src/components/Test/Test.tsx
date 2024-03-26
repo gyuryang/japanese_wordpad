@@ -19,6 +19,7 @@ export default function Test({
     const fetchData = async () => {
       try {
         const response = await fetch("/langList.xlsx"); // Excel 파일 경로
+        // const response = await fetch("s3://elasticbeanstalk-us-east-2-275358873718/langList.xlsx"); // aws 파일 경로
         const blob = await response.blob();
         const reader = new FileReader();
         reader.onload = (event) => {
